@@ -27,3 +27,7 @@ This project is built openly with AI assistance, mainly [Claude Code](https://cl
 - **What AI doesn't do:** It doesn't have access to production secrets or the database admin key, and it doesn't decide what ships.
 
 If you find a mistake that looks AI-made, please open an issue.
+
+## Contributing
+
+Changes go through pull requests. CI must pass and the owner must approve before anything merges to `main`.
