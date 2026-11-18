@@ -1,0 +1,26 @@
+name: Agent task
+description: A small, well-scoped task an agent can pick up
+labels: []
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is wrong or missing?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Testable statements. The agent turns each one into a test.
+      placeholder: "- [ ] pickPrompt never returns an excluded id"
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Files in scope
+      description: One path per line. The agent may touch only these.
+    validations:
+      required: true

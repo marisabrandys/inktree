@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+
+  test-integrity:
+    # Fails if a PR deletes or skips tests, so an agent can't "pass" by weakening them.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check for deleted or skipped tests
+        run: |
+          base="origin/${{ github.base_ref }}"
+          if git diff --diff-filter=D --name-only "$base"...HEAD | grep -E '\.(test|spec)\.(ts|tsx)$'; then
+            echo "::error::A test file was deleted."; exit 1
+          fi
+          if git diff -U0 "$base"...HEAD -- '*.test.ts' '*.test.tsx' '*.spec.ts' \
+              | grep -E '^\+.*(\.skip|xit\(|xdescribe\(|test\.todo)'; then
+            echo "::error::A test was skipped."; exit 1
+          fi
