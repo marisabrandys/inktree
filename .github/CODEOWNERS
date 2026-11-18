@@ -1,0 +1,9 @@
+# Default owner for everything
+*                           @marisabrandys
+
+# Files agents must not change without explicit owner review
+/.github/                   @marisabrandys
+/tests/                     @marisabrandys
+/supabase/migrations/       @marisabrandys
+/src/config/tip.ts          @marisabrandys
+/CLAUDE.md                  @marisabrandys
