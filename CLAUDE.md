@@ -10,7 +10,6 @@ Inktree is a browser game that gives random sketch prompts. Users sign in, uploa
 
 ## Stay in scope
 - Touch only the files listed under "Files in scope" in the issue. If you need others, stop and comment on the issue.
-- Keep the diff under about 400 changed lines. One issue per PR.
 
 ## Never do these
 - Delete, skip (`.skip`, `xit`, `test.todo`), or weaken an existing test or assertion.
@@ -19,7 +18,7 @@ Inktree is a browser game that gives random sketch prompts. Users sign in, uploa
 - Add dependencies without saying why in the PR description.
 
 ## Anti-loop rule
-If the same test fails twice with the same error, **stop**. Do not try a third variation. Post a comment on the issue with:
+If the same test fails twice with roughly the same error, **stop**. Do not try a third variation. Post a comment on the issue with:
 - what you tried,
 - the exact error,
 - your best guess at the cause,
